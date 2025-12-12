@@ -40,7 +40,7 @@ export function main() {
         name = readline.question("Informe o nome do produto: ");
         price = readline.questionFloat("Informe o preco do produto: ");
         stock = readline.questionInt("Informe a quantidade em estoque: ");
-        category = readline.keyInSelect(mushroomCategory, "", {cancel: false}) +1;
+        category = readline.keyInSelect(mushroomCategory, "", {cancel: false}) + 1;
         origin = readline.question("Informe a origem do produto: ");
 
         productController.create(new Mushroom(productController.generateId(), name, price, stock, category, origin));
@@ -53,45 +53,47 @@ export function main() {
 
       case 3:
         console.log(chalk.greenBright("\n\nConsultar Produto por Id\n\n"));
-        // accountNumber = readline.questionInt("Digite o numero da conta: ");
-        // accountService.findByAccountNumber(accountNumber);
+        id = readline.questionInt("Digite o ID do produto: ");
+        productController.findById(id);
         break;
 
       case 4:
         console.log(chalk.greenBright("\n\nAtualizar Produto\n\n"));
+        id = readline.questionInt("Digite o ID do produto: ");
+        const productFound = productController.findInArray(id);
 
-        // accountNumber = readline.questionInt("Digite o numero da conta: ");
-        // let account = accountService.findInArray(accountNumber);
+        if (productFound != null) {
+          name = readline.question("Nome: ");
+          price = readline.questionFloat("Preco (R$): ");
+          stock = readline.questionInt("Estoque: ");
+          category = readline.keyInSelect(mushroomCategory, "", {cancel: false}) + 1;
+          origin = readline.question("Origem: ");
 
-        // if (account != null) {
-        //     agency = readline.questionInt("Digite o Número da agência: ");
-        //     starter = readline.question("Digite o Nome do Titular da conta: ");
-        //     accountType = account.accountType;
-        //     balance = readline.questionFloat("\nDigite o Saldo da conta (R$): ");
-
-        //     switch (accountType) {
-        //         case 1:
-        //             limit = readline.questionFloat("Digite o Limite da Conta (R$): ");
-        //             accountService.update(
-        //                 new CheckingAccount(accountNumber, agency, accountType, starter, balance, limit));
-        //             break;
-
-        //         case 2:
-        //             birthday = readline.questionInt("Digite o Dia do aniversário da Conta Poupança: ");
-        //             accountService.update(new SavingsAccount(accountNumber, agency, accountType, starter, balance, birthday));
-        //             break;
-        //     }
-
-        // } else {
-        //     console.log(`\nA Conta numero: ${accountNumber} não foi encontrada!`);
-        // }
+          productController.update(new Mushroom(id, name, price, stock, category, origin));
+        } else {
+            console.log(chalk.yellow(`\nProduto ID: ${id} nao encontrado!`));
+        }
 
         break;
 
       case 5:
         console.log(chalk.greenBright("\n\nDeletar Produto\n\n"));
-        // accountNumber = readline.questionInt("Digite o numero da Conta: ");
-        // accountService.delete(accountNumber);
+        id = readline.questionInt("Informe o ID do produto: ");
+        productController.delete(id);
+        break;
+
+      case 6:
+        console.log(chalk.greenBright("\n\nVender Produto\n\n"));
+        id = readline.questionInt("Informe o ID do produto: ");
+        let qtdSell = readline.questionInt("Informe a quantidade: ");
+        productController.sell(id, qtdSell);
+        break;
+
+      case 7:
+        console.log(chalk.greenBright("\n\nReabastecer estoque\n\n"));
+        id = readline.questionInt("Informe o ID do produto: ");
+        let qtdRestock = readline.questionInt("Informe a quantidade: ");
+        productController.restock(id, qtdRestock);
         break;
 
       default:
