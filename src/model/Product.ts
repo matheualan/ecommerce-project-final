@@ -37,4 +37,8 @@ export abstract class Product {
 
     abstract description(): string;
 
+    public view() : void {
+        
+    }
+
 }
