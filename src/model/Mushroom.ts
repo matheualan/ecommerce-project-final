@@ -1,11 +1,10 @@
 import { Product } from "./Product";
 
 export enum MushroomCategory {
-  COMESTIVEL = "Comestível",
+  COMESTIVEL = "Comestivel",
   FUNCIONAL = "Funcional"
 }
 
-/** Classe filha: cogumelo com atributos específicos */
 export class Mushroom extends Product {
 
   constructor(
@@ -13,16 +12,16 @@ export class Mushroom extends Product {
     name: string,
     price: number,
     stock: number,
-    public species: string,             // ex: "Pleurotus ostreatus"
-    public category: MushroomCategory,  // comestível | funcional
-  ) {
+    public category: MushroomCategory) {
     super(id, name, price, stock);
   }
 
   description(): string {
-    return `${this.id} - ${this.name} (${this.species}) | ${this.category} | R$ ${this.price.toFixed(
-      2
-    )} | estoque: ${this.stock}`;
+    return `id: ${this._id}
+     \nNome: ${this._name}
+     \nCategoria: ${this.category}
+     \nPreco: R$ ${this._price.toFixed(2)}
+     \nEstoque: ${this._stock}`;
   }
 
 }
