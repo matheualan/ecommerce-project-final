@@ -110,7 +110,7 @@ export class ProductController implements ProductRepository {
         12.5,             //price
         20,               //stock
         1,                //category
-        "Producao local"  //origi
+        "Producao local"  //origin
       ));
 
     this.create(new Mushroom(this.generateId(), "Juba de Leao", 50.0, 8, 2, "Importado"));

@@ -23,6 +23,8 @@ export function main() {
     console.log("               3 - Buscar Produto por Id                ");
     console.log("               4 - Atualizar Produto                    ");
     console.log("               5 - Deletar Produto                      ");
+    console.log("               6 - Vender Produto                      ");
+    console.log("               7 - Reabastecer estoque                      ");
     console.log(chalk.red("               0 - Sair                                 "));
     console.log(chalk.yellow("\n*****************************************************\n"));
 
